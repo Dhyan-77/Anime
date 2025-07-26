@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Animemodel
@@ -6,7 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import Animemodelserial
 from .serializers import Signupserializers
 from rest_framework.generics import RetrieveAPIView
-
+from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class Animeview(APIView):
@@ -43,3 +45,18 @@ class AnimeDetail(RetrieveAPIView):
    
         queryset = Animemodel.objects.all()
         serializer_class = Animemodelserial
+
+
+class Animeupdate(RetrieveUpdateAPIView):
+        queryset = Animemodel.objects.all()
+        serializer_class = Animemodelserial
+        lookup_field = 'id'
+        permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+
+class AnimeDeleteView(generics.DestroyAPIView):
+    queryset = Animemodel.objects.all()
+    serializer_class = Animemodelserial
+    lookup_field = 'id'
+    permission_classes = [IsAuthenticatedOrReadOnly]
