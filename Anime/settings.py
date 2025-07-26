@@ -149,7 +149,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:5173",
-    "https://soft-basbousa-476593.netlify.app/",
+    "https://soft-basbousa-476593.netlify.app",
 ]
 
 ALLOWED_HOSTS = ['*']  # For now
