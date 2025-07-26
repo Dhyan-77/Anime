@@ -25,12 +25,10 @@ from datetime import timedelta
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-==ne9s0*!w9k-z&@(yzg^15b11%t!)9+w*w-(a0^##o*-px2$r'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -151,6 +149,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:5173",
+    "https://soft-basbousa-476593.netlify.app/",
 ]
 
 ALLOWED_HOSTS = ['*']  # For now
